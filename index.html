@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Koodiklinikka</title>
+    <link rel="stylesheet" href="/css/icons.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <meta name="description" content="Koodiklinikka on suomalainen yhteisö ohjelmistoalan harrastajille ja ammattilaisille.">
+    <meta name="keywords" content="ohjelmointi,frontend,open source,devaus,suomi,javascript,clojure,go,java,node.js,io.js,angular.js,web">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <script>
+      if(location.hostname === 'koodiklinikka.fi' && location.protocol !== 'https:') {
+        location.protocol = 'https';
+      }
+    </script>
+    <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="icons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="icons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="icons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="icons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="icons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="icons/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="icons/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="icons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="icons/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="icons/favicon-32x32.png" sizes="32x32">
+    <link rel="shortcut icon" href="icons/favicon.ico">
+    <link rel="icon" href="icons/favicon.ico">
+    <meta name="msapplication-TileColor" content="#10558c">
+    <meta name="msapplication-TileImage" content="icons/mstile-144x144.png">
+    <meta property="og:image" content="images/logo.png">
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="//use.typekit.net/scb5xny.js"></script>
+    <script>
+      try{Typekit.load();}catch(e){};
+      
+    </script>
+  </head>
+  <body>
+    <div class="site">
+      <div class="container">
+        <div class="header">
+          <video autoplay loop poster="images/poster.jpg" class="header__video-bg">
+            <source src="videos/jumbo.mp4" type="video/mp4">
+          </video>
+          <div class="header__container">
+            <div class="header__nav"><a href="/">etusivu</a><a href="/yhdistys.html">yhdistys</a></div>
+            <div class="header__headline">
+              <div class="header__logo"></div>
+              <h1 class="header__title">Yhteisö kaikille ohjelmoinnista ja ohjelmistoalasta kiinnostuneille harrastajille ja&nbsp;ammattilaisille.</h1>
+            </div>
+          </div>
+        </div>
+        <div class="content with-feed">
+          <section>
+            <div class="row">
+              <h3>Tule mukaan <a target="_blank" href="https://slack.com/">Slack</a>-yhteisöömme</h3>
+              <div id="invite-form" class="form"></div>
+              <p class="code-of-conduct">Ennen liittymistä yhteisöömme varmista, että olet lukenut yhteisön <a target="_blank" href="https://github.com/koodiklinikka/code-of-conduct/blob/master/README.md">käyttäytymissäännöt</a>.</p>
+            </div>
+          </section>
+          <section>
+            <div class="row">
+              <div class="bread">
+                <div class="column column1-2">
+                  <h3>Yhteisö ohjelmoinnista kiinnostuneille</h3>
+                  <p>
+                    Koodiklinikka on Suomen suurin ohjelmistoalan yhteisö, joka kokoaa työntekijät, harrastajat ja vasta-alkajat yhteen.
+                    Tarkoituksenamme on yhdistää ja kasvattaa suomalaista ohjelmointiyhteisöä, sekä tarjota apua ja uusia kontakteja ohjelmoinnista innostuneille nuorille.
+                  </p>
+                  <p>Mukaan liittyminen on ilmaista ja helppoa. Jätä sähköpostiosoitteesi ylläolevaan kenttään ja lähetämme sinulle kutsun Slack-yhteisöömme.</p>
+                </div>
+                <div class="column column1-2"><a href="images/slack.png" target="_blank"><img src="images/slack.png"></a></div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="bread">
+                <div class="column column2-5"><img src="images/octocat.png"></div>
+                <div class="column column3-5">
+                  <h3>Avoin lähdekoodi</h3>
+                  <p>
+                    Suosimme avointa lähdekoodia ja kaikki käyttämämme koodi on vapaasti saatavilla ja hyödynnettävissä <a href="https://github.com/koodiklinikka">Github-organisaatiomme sivulta</a>.
+                    Organisaation jäseneksi otamme kaikki Slack-yhteisömme jäsenet. Koodiklinikan projekteihin voi osallistua kuka tahansa ja muutosideat ovat aina lämpimästi tervetulleita.
+                  </p>
+                  <div id="members"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <h2>Potilaiden projekteja</h2>
+              <div class="bread">
+                <div class="column column2-5"><a href="https://redom.js.org" target="_blank"><img src="images/redom.svg"></a></div>
+                <div class="column column3-5">
+                  <h4>RE:DOM</h4>
+                  <p>
+                    Tiny (2 KB) turboboosted JavaScript library for creating user interfaces.
+                    Develop web apps with 100 % JavaScript and web standards.
+                    
+                  </p>
+                </div>
+              </div>
+              <div class="bread">
+                <div class="column column2-5"><a href="https://codestats.net/" target="_blank"><img src="images/codestats.png" class="project-image__codestats"></a></div>
+                <div class="column column3-5">
+                  <h4>Code::Stats</h4>
+                  <p>
+                    Code::Stats is a free stats tracking service for programmers
+                    
+                  </p>
+                </div>
+              </div>
+              <div class="bread">
+                <div class="column column2-5"><a href="https://reactabular.js.org/" target="_blank"><img src="images/reactabular.png" class="project-image__codestats"></a></div>
+                <div class="column column3-5">
+                  <h4>Reactabular</h4>
+                  <p>
+                    A framework for building the React table you need
+                    
+                  </p>
+                </div>
+              </div>
+              <div class="bread">
+                <div class="column column2-5"><a href="https://avain.app" target="_blank"><img src="images/avain.svg" style="width: 7rem"></a></div>
+                <div class="column column3-5">
+                  <h4>Avain.app</h4>
+                  <p>
+                    Secure one-time password manager (PWA + Web Crypto)
+                    
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <div id="feed"></div>
+        </div>
+      </div>
+      <footer>
+        <div class="sponsors">
+          <div class="sponsors__label">Yhteistyössä</div><a href="http://futurice.com/" target="_blank"><img src="images/futurice.svg" class="sponsor sponsor__futurice"></a><a href="http://www.metosin.fi/" target="_blank"><img src="images/metosin.svg" class="sponsor sponsor__metosin"></a><a href="https://www.solita.fi/" target="_blank"><img src="images/solita.svg" class="sponsor"></a><a href="http://leonidasoy.fi/" target="_blank"><img src="images/leonidas.png" class="sponsor sponsor__leonidas"></a><a href="https://www.nordea.com/" target="_blank"><img src="images/nordea.png" class="sponsor sponsor__nordea"></a>
+        </div>
+        <div class="contacts">
+          <div><a href="https://koodiklinikka.slack.com"><i class="fa fa-slack"></i></a><a href="https://github.com/koodiklinikka/koodiklinikka.fi"><i class="fa fa-github"></i></a><a href="https://twitter.com/koodiklinikka"><i class="fa fa-twitter"></i></a><a href="https://www.linkedin.com/groups/12025476"><i class="fa fa-linkedin"></i></a><a href="https://www.facebook.com/koodiklinikka"><i class="fa fa-facebook"></i></a>
+            <div id="email" class="email"></div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <div id="fader"></div>
+    <script src="/js/bundle.js"></script>
+  </body>
+</html>
