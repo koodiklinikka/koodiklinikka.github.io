@@ -1,0 +1,994 @@
+<!DOCTYPE html><html lang="fi"><head><meta name="title" content="Koodiklinikka – Suomen suurin ohjelmistoalan yhteisö"/><meta name="description" content="Koodiklinikka on suomalainen yhteisö ohjelmistoalan harrastajille ja ammattilaisille."/><meta name="keywords" content="ohjelmointi,frontend,open source,devaus,suomi,javascript,clojure,go,java,node.js,io.js,angular.js,web"/><meta property="og:type" content="website"/><meta property="og:url" content="https://koodiklinikka.fi/"/><meta property="og:title" content="Koodiklinikka – Suomen suurin ohjelmistoalan yhteisö"/><meta property="og:description" content="Koodiklinikka on Suomen suurin ohjelmistoalan yhteisö, joka kokoaa työntekijät, harrastajat ja vasta-alkajat yhteen. Tarkoituksenamme on yhdistää ja kasvattaa suomalaista ohjelmointiyhteisöä, sekä tarjota apua ja uusia kontakteja ohjelmoinnista innostuneille nuorille."/><meta property="og:image" content="/static/images/meta.jpg"/><meta property="twitter:card" content="summary_large_image"/><meta property="twitter:url" content="https://koodiklinikka.fi/"/><meta property="twitter:title" content="Koodiklinikka – Suomen suurin ohjelmistoalan yhteisö"/><meta property="twitter:description" content="Koodiklinikka on Suomen suurin ohjelmistoalan yhteisö, joka kokoaa työntekijät, harrastajat ja vasta-alkajat yhteen. Tarkoituksenamme on yhdistää ja kasvattaa suomalaista ohjelmointiyhteisöä, sekä tarjota apua ja uusia kontakteja ohjelmoinnista innostuneille nuorille."/><meta property="twitter:image" content="/static/images/meta.jpg"/><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><meta name="apple-mobile-web-app-capable" content="yes"/><link rel="apple-touch-icon" sizes="180x180" href="/static/icons/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/static/icons/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/static/icons/favicon-16x16.png"/><link rel="manifest" href="/static/icons/site.webmanifest"/><title>Koodiklinikka</title><meta name="next-head-count" content="21"/><style>@import url(https://fonts.googleapis.com/css2?family=Lato:wght@900&family=Source+Sans+Pro:wght@400;600;700&display=swap);
+.input {
+  height: 45px;
+  padding: 0.5em 1em;
+  box-sizing: border-box;
+  font-size: inherit;
+  border: 1px solid rgba(0,0,0,0.3);
+  border-radius: 5px;
+  background: #fff;
+  outline: 0;
+  color: rgba(0,0,0,0.5);
+}
+.input:focus {
+  border: 2px solid #3090de;
+  color: rgba(0,0,0,0.6);
+}
+.input::-webkit-input-placeholder {
+  color: rgba(0,0,0,0.3);
+}
+.input:-moz-placeholder {
+  color: rgba(0,0,0,0.3);
+  opacity: 1;
+}
+.input::-moz-placeholder {
+  color: rgba(0,0,0,0.3);
+  opacity: 1;
+}
+.input:-ms-input-placeholder {
+  color: rgba(0,0,0,0.3);
+}
+.input.has-error {
+  border-color: rgba(226,33,112,0.6);
+  color: #e22170;
+}
+.input.half {
+  width: 48%;
+}
+.input.half.left {
+  margin-right: 4%;
+}
+.btn {
+  border-radius: 3px;
+  padding: 1em;
+  border: 0;
+  font-size: 14px;
+  cursor: pointer;
+}
+.btn:disabled {
+  opacity: 0.6;
+}
+.header {
+  background: url("/static/images/jumbo.jpg");
+  background-position: bottom center;
+  background-size: cover;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  transform: translateZ(0);
+}
+@media screen and (max-width: 1030px) {
+  .header {
+    height: 300px;
+  }
+  .header video {
+    display: none;
+  }
+}
+.header__container {
+  background: #3e7394;
+  background: linear-gradient(120deg, rgba(8,80,120,0.8) 10%, rgba(133,216,206,0.7) 90%);
+  display: table;
+  height: 100%;
+  text-align: center;
+  vertical-align: middle;
+  width: 100%;
+}
+.header__nav {
+  position: absolute;
+  left: 90px;
+  top: 40px;
+}
+@media screen and (max-width: 810px) {
+  .header__nav {
+    left: auto;
+    right: auto;
+    width: 100%;
+  }
+}
+.header__nav a {
+  display: block;
+  max-width: 180px;
+}
+@media screen and (max-width: 810px) {
+  .header__nav a {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.header__nav a img {
+  width: 100%;
+}
+.header__headline {
+  display: table-cell;
+  padding: 0 1em;
+  vertical-align: middle;
+}
+.header__title {
+  color: #fff;
+  display: inline-block;
+  font-size: 2.75em;
+  letter-spacing: -1px;
+  line-height: 1.4em;
+  margin: auto;
+  max-width: 780px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 900;
+  text-align: center;
+  text-shadow: 0 2px 0 rgba(0,0,0,0.1);
+  vertical-align: middle;
+}
+@media screen and (max-width: 1030px) {
+  .header__title {
+    font-size: 2em;
+    max-width: 640px;
+  }
+}
+@media screen and (max-width: 810px) {
+  .header__title {
+    display: block;
+    font-size: 1.6em;
+    max-width: 440px;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 410px) {
+  .header__title {
+    font-size: 1.4em;
+  }
+}
+.header__title a {
+  color: inherit;
+  text-decoration: underline;
+}
+.header__video-bg {
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: -2;
+}
+@media (min-aspect-ratio: 1/2) {
+  .header__video-bg {
+    width: 100%;
+    height: auto;
+  }
+}
+.header__members {
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.header__members .member {
+  margin: 0;
+  border-radius: 0;
+  width: 5.555555555555555%;
+}
+@media screen and (min-width: 2000px) {
+  .header__members .member {
+    width: 5%;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .header__members .member {
+    width: 6.666666666666667%;
+  }
+}
+@media screen and (max-width: 810px) {
+  .header__members .member {
+    width: 10%;
+  }
+}
+@media screen and (max-width: 450px) {
+  .header__members .member {
+    width: 20%;
+  }
+}
+.header__members .members {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 400px;
+  animation: spin 40s infinite linear;
+}
+.header__members .members:first-child {
+  z-index: 1;
+}
+.header__members .members:last-child {
+  animation: spin2 40s infinite linear;
+}
+@-moz-keyframes spin {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -400px;
+  }
+  50.0001% {
+    top: 400px;
+  }
+  100% {
+    top: 0;
+  }
+}
+@-webkit-keyframes spin {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -400px;
+  }
+  50.0001% {
+    top: 400px;
+  }
+  100% {
+    top: 0;
+  }
+}
+@-o-keyframes spin {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -400px;
+  }
+  50.0001% {
+    top: 400px;
+  }
+  100% {
+    top: 0;
+  }
+}
+@keyframes spin {
+  0% {
+    top: 0;
+  }
+  50% {
+    top: -400px;
+  }
+  50.0001% {
+    top: 400px;
+  }
+  100% {
+    top: 0;
+  }
+}
+@-moz-keyframes spin2 {
+  0% {
+    top: 400px;
+  }
+  50% {
+    top: 0;
+  }
+  99.99999% {
+    top: -400px;
+  }
+  100% {
+    top: 400px;
+  }
+}
+@-webkit-keyframes spin2 {
+  0% {
+    top: 400px;
+  }
+  50% {
+    top: 0;
+  }
+  99.99999% {
+    top: -400px;
+  }
+  100% {
+    top: 400px;
+  }
+}
+@-o-keyframes spin2 {
+  0% {
+    top: 400px;
+  }
+  50% {
+    top: 0;
+  }
+  99.99999% {
+    top: -400px;
+  }
+  100% {
+    top: 400px;
+  }
+}
+@keyframes spin2 {
+  0% {
+    top: 400px;
+  }
+  50% {
+    top: 0;
+  }
+  99.99999% {
+    top: -400px;
+  }
+  100% {
+    top: 400px;
+  }
+}
+.sk-folding-cube {
+  margin: auto;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: rotateZ(45deg);
+}
+.sk-folding-cube .sk-cube {
+  float: left;
+  width: 50%;
+  height: 50%;
+  position: relative;
+  transform: scale(1.1);
+}
+.sk-folding-cube .sk-cube:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #3090de;
+  animation: sk-foldCubeAngle 2.4s infinite linear both;
+  transform-origin: 100% 100%;
+}
+.sk-folding-cube .sk-cube2 {
+  transform: scale(1.1) rotateZ(90deg);
+}
+.sk-folding-cube .sk-cube3 {
+  transform: scale(1.1) rotateZ(180deg);
+}
+.sk-folding-cube .sk-cube4 {
+  transform: scale(1.1) rotateZ(270deg);
+}
+.sk-folding-cube .sk-cube2:before {
+  animation-delay: 0.3s;
+}
+.sk-folding-cube .sk-cube3:before {
+  animation-delay: 0.6s;
+}
+.sk-folding-cube .sk-cube4:before {
+  animation-delay: 0.9s;
+}
+@-moz-keyframes sk-foldCubeAngle {
+  0%, 10% {
+    transform: perspective(140px) rotateX(-180deg);
+    opacity: 0;
+  }
+  25%, 75% {
+    transform: perspective(140px) rotateX(0deg);
+    opacity: 1;
+  }
+  90%, 100% {
+    transform: perspective(140px) rotateY(180deg);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes sk-foldCubeAngle {
+  0%, 10% {
+    transform: perspective(140px) rotateX(-180deg);
+    opacity: 0;
+  }
+  25%, 75% {
+    transform: perspective(140px) rotateX(0deg);
+    opacity: 1;
+  }
+  90%, 100% {
+    transform: perspective(140px) rotateY(180deg);
+    opacity: 0;
+  }
+}
+@-o-keyframes sk-foldCubeAngle {
+  0%, 10% {
+    transform: perspective(140px) rotateX(-180deg);
+    opacity: 0;
+  }
+  25%, 75% {
+    transform: perspective(140px) rotateX(0deg);
+    opacity: 1;
+  }
+  90%, 100% {
+    transform: perspective(140px) rotateY(180deg);
+    opacity: 0;
+  }
+}
+@keyframes sk-foldCubeAngle {
+  0%, 10% {
+    transform: perspective(140px) rotateX(-180deg);
+    opacity: 0;
+  }
+  25%, 75% {
+    transform: perspective(140px) rotateX(0deg);
+    opacity: 1;
+  }
+  90%, 100% {
+    transform: perspective(140px) rotateY(180deg);
+    opacity: 0;
+  }
+}
+body,
+html {
+  margin: 0;
+  font: 18px 'Source Sans Pro', 'Helvetica Neue', helvetica, arial, sans-serif;
+  height: 100%;
+  width: 100%;
+  font-weight: 400;
+  color: #444;
+  font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3 {
+  margin: 0;
+  margin-bottom: 0.5em;
+  text-shadow: 1px 1px 10px rgba(255,255,255,0.5);
+}
+h2 {
+  margin-bottom: 1em;
+}
+h3 {
+  font-size: 1.25em;
+}
+p {
+  margin-top: 1em;
+  line-height: 1.75em;
+  font-size: 16px;
+}
+a {
+  color: #3090de;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.container {
+  flex: 1;
+}
+section {
+  background: #fff;
+  padding: 2em 0;
+}
+.content {
+  z-index: 2;
+  position: relative;
+  min-height: 50vh;
+  box-sizing: border-box;
+}
+@media screen and (max-width: 700px) {
+  .content h3 {
+    margin-top: 0;
+  }
+}
+.content.with-feed {
+  padding-right: 500px;
+}
+section:first-child {
+  box-shadow: -1px -1px 1px rgba(0,0,0,0.05);
+  border-bottom: 1px solid #eee;
+  background: #fcfcfc;
+}
+.row {
+  max-width: 850px;
+  margin: auto;
+  overflow: auto;
+  padding: 0 2em;
+  margin-top: 2em;
+}
+.row:first-child {
+  margin-top: 0;
+}
+.column {
+  float: left;
+  overflow: auto;
+  padding: 0 1em;
+  box-sizing: border-box;
+}
+.column:first-child {
+  padding-left: 0;
+}
+.column:last-child {
+  padding-right: 0;
+}
+.column img:first-child {
+  max-width: 100%;
+}
+.column3-5 {
+  width: 60%;
+}
+.column2-5 {
+  width: 40%;
+}
+.column1-2 {
+  width: 50%;
+}
+@media screen and (max-width: 700px) {
+  .column {
+    width: 100%;
+    float: none;
+    margin-top: 1em;
+    padding: 0;
+  }
+  .column:first-child {
+    margin-top: 0;
+  }
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.form .btn {
+  background: #3090de;
+  color: rgba(255,255,255,0.9);
+  margin-left: 0.5rem;
+}
+.form.sending .invite-form__loader {
+  display: block;
+}
+.controls-wrapper {
+  display: flex;
+}
+@media screen and (max-width: 450px) {
+  .controls-wrapper {
+    flex-direction: column;
+  }
+  .controls-wrapper .btn {
+    margin: 0;
+    margin-top: 0.5rem;
+  }
+}
+.input-wrapper {
+  position: relative;
+  flex-grow: 1;
+}
+@media screen and (max-width: 650px) {
+  .input-wrapper width 400px {
+    width: auto;
+  }
+}
+.invite-form {
+  margin-top: 0.5rem;
+  position: relative;
+}
+.invite-form .input {
+  width: 100%;
+}
+.invite-form .invite-form__input {
+  padding-right: 2em;
+}
+.invite-form .label {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  opacity: 0.6;
+  display: block;
+}
+.invite-form .btn {
+  height: 45px;
+  font: inherit;
+  border-radius: 15px;
+  padding: 0.5rem 3rem;
+  color: #fff;
+}
+.invite-form .btn:active {
+  border-bottom: 0;
+}
+.invite-form .invite-form__loader {
+  display: none;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  margin-top: -5px;
+}
+.code-of-conduct {
+  margin-bottom: 0;
+}
+.membership-form .input {
+  margin: 8px 0px;
+}
+.membership-form .btn {
+  margin-top: 12px;
+}
+.membership-form__loader {
+  width: 70px;
+  height: 70px;
+  margin: auto;
+}
+.form--message {
+  background: #3090de;
+  color: #fff;
+  line-height: 40px;
+  padding: 0 0.5em;
+  margin-top: 4px;
+  transform: rotateX(0deg);
+  transform-origin: 100% 0;
+  animation: drop 0.6s linear;
+}
+.form--message a {
+  color: #fff;
+  font-weight: bold;
+}
+.form.has-error .form--message {
+  background: #e22170;
+}
+.members a {
+  display: inline-block;
+}
+.member {
+  width: 30px;
+  vertical-align: middle;
+  margin: 3px;
+  border-radius: 3px;
+}
+.project-image__codestats {
+  width: 143px;
+}
+footer {
+  padding: 0.5em 1em;
+  z-index: 2;
+  border-top: 1px solid #ececec;
+  font-size: 1.5em;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  text-align: center;
+}
+@media screen and (max-width: 940px) {
+  footer {
+    display: block;
+  }
+}
+footer i {
+  margin: 0 0.3em;
+  font-size: 1.5em;
+}
+.contacts {
+  line-height: normal;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+@media screen and (max-width: 940px) {
+  .contacts {
+    margin-top: 1em;
+  }
+}
+.sponsors {
+  text-align: center;
+  display: inline-block;
+}
+.sponsors__label {
+  color: #ccc;
+  font-size: 12px;
+  text-align: left;
+}
+#email {
+  font-size: 0.85rem;
+}
+@media screen and (min-width: 400px) {
+  #email {
+    font-size: 1rem;
+  }
+}
+.sponsor {
+  height: 60px;
+  margin-right: 1em;
+  vertical-align: middle;
+}
+@media screen and (max-width: 940px) {
+  .sponsor {
+    margin-top: 1em;
+  }
+}
+.feed {
+  width: 500px;
+  height: 100%;
+  overflow: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 5;
+  background: #fff;
+  border-left: 1px solid #e5e5e5;
+}
+.feed::-webkit-scrollbar {
+  display: none;
+}
+@media screen and (max-width: 1200px) {
+  .feed {
+    width: 350px;
+  }
+  .content.with-feed {
+    padding-right: 350px;
+  }
+}
+@media screen and (max-width: 980px) {
+  .feed {
+    width: 0;
+  }
+  .content.with-feed {
+    padding-right: 0;
+  }
+}
+.message {
+  padding: 1em;
+  padding-right: 2em;
+  border-top: 1px solid #e5e5e5;
+  position: relative;
+  display: flex;
+}
+.message__content {
+  flex: 1;
+}
+.message__body {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.4em;
+}
+.message__image {
+  width: 50px;
+  margin-right: 1em;
+  margin-top: 0.5em;
+  text-align: center;
+}
+.message__image a {
+  outline: 0;
+}
+.message__image img {
+  width: 50px;
+}
+.message__icon {
+  margin: 6px;
+  font-size: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.message__icon .fa-twitter {
+  color: #55acee;
+}
+.message__icon .fa-github {
+  color: #333;
+}
+.message__icon .fa-slack {
+  color: #dc005d;
+}
+.message__details {
+  font-size: 0.7em;
+  margin-top: 0.5em;
+}
+.message__meta {
+  margin-left: 0.5em;
+}
+.fader {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 99%, rgba(0,0,0,0.15) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+.bread {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+.bread .column {
+  float: none;
+  display: table-cell;
+  vertical-align: middle;
+}
+@media screen and (max-width: 700px) {
+  .bread {
+    display: block;
+  }
+  .bread .column {
+    display: block;
+  }
+}
+.bread-img {
+  background: url("/static/images/hp3_bw.jpg");
+  background-size: cover;
+  border-radius: 160px;
+  opacity: 0.85;
+  width: 320px;
+  height: 320px;
+  margin: auto;
+}
+@media screen and (max-width: 700px) {
+  .bread-img {
+    display: none;
+  }
+}
+.organization {
+  padding-top: 3em;
+}
+.membership-information.column {
+  vertical-align: initial;
+}
+.membership-information.column p:first-child {
+  margin-top: 37px;
+}
+.channels {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+}
+.channels td {
+  padding: 0.4rem 0;
+}
+.channels td:first-child {
+  text-align: right;
+}
+.channel {
+  align-items: center;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  color: #4a4a4a;
+  display: inline-flex;
+  font-size: 0.75rem;
+  height: 2em;
+  justify-content: center;
+  line-height: 1.5;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  white-space: nowrap;
+}
+.channels tr:nth-child(1n) .channel {
+  background-color: #ebfffc;
+  color: #00947e;
+}
+.channels tr:nth-child(2n) .channel {
+  background-color: #eef3fc;
+  color: #2160c4;
+}
+.channels tr:nth-child(3n) .channel {
+  background-color: #eef6fc;
+  color: #1d72aa;
+}
+.channels tr:nth-child(4n) .channel {
+  background-color: #effaf3;
+  color: #257942;
+}
+.channels tr:nth-child(5n) .channel {
+  background-color: #fffbeb;
+  color: #947600;
+}
+.channels tr:nth-child(6n) .channel {
+  background-color: #feecf0;
+  color: #cc0f35;
+}
+.channel-members {
+  font-size: 12px;
+}
+.channel-topic p {
+  font-size: 0.8rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  border-left: 1px solid #e6e6e6;
+  padding-left: 0.75rem;
+  margin: 0;
+  margin-left: 0.5rem;
+}
+.channel-topic img {
+  width: 20px;
+}
+@-moz-keyframes drop {
+  0% {
+    transform: rotateX(90deg);
+  }
+  30% {
+    transform: rotateX(45deg);
+  }
+  45% {
+    transform: rotateX(0deg);
+  }
+  60% {
+    transform: rotateX(45deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+@-webkit-keyframes drop {
+  0% {
+    transform: rotateX(90deg);
+  }
+  30% {
+    transform: rotateX(45deg);
+  }
+  45% {
+    transform: rotateX(0deg);
+  }
+  60% {
+    transform: rotateX(45deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+@-o-keyframes drop {
+  0% {
+    transform: rotateX(90deg);
+  }
+  30% {
+    transform: rotateX(45deg);
+  }
+  45% {
+    transform: rotateX(0deg);
+  }
+  60% {
+    transform: rotateX(45deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+@keyframes drop {
+  0% {
+    transform: rotateX(90deg);
+  }
+  30% {
+    transform: rotateX(45deg);
+  }
+  45% {
+    transform: rotateX(0deg);
+  }
+  60% {
+    transform: rotateX(45deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+@font-face {
+  font-family: "FontAwesome";
+  src: url(/_next/static/chunks/fonts/fontawesome-webfont-af7ae505a9eed503f8b8e6982036873e.woff2) format("woff2"), url(/_next/static/chunks/fonts/fontawesome-webfont-fee66e712a8a08eef5805a46892932ad.woff) format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+.fa-github:before {
+  content: "\F09B";
+}
+.fa-slack:before {
+  content: "\F198";
+}
+.fa-twitter:before {
+  content: "\F099";
+}
+.fa-linkedin:before {
+  content: "\F0E1";
+}
+.fa-facebook:before {
+  content: "\F09A";
+}
+
+</style><noscript data-n-css="true"></noscript><link rel="preload" href="/_next/static/chunks/main-522b3f942203a9317190.js" as="script"/><link rel="preload" href="/_next/static/chunks/webpack-d7b2fb72fb7257504a38.js" as="script"/><link rel="preload" href="/_next/static/chunks/framework.1d36bc031662b4dc4c28.js" as="script"/><link rel="preload" href="/_next/static/chunks/commons.ad1dd656b127b586e70d.js" as="script"/><link rel="preload" href="/_next/static/chunks/f6078781a05fe1bcb0902d23dbbb2662c8d200b3.f5d66da7406296e78e59.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/_app-ce4797976568efc3d7c4.js" as="script"/><link rel="preload" href="/_next/static/chunks/styles.b46a4adba07379a86283.js" as="script"/><link rel="preload" href="/_next/static/chunks/pages/index-93b4ab2183cbbc15b737.js" as="script"/></head><body><div class="site"><div class="container"><div id="__next"><div class="header"><video autoplay="" loop="" muted="" poster="/static/images/poster.jpg" class="header__video-bg"><source src="/static/videos/jumbo.mp4" type="video/mp4"/></video><div class="header__container"><div class="header__nav"><a href="/"><img src="/static/images/logo-new.svg" alt="Etusivu"/></a></div><div class="header__headline"><h1 class="header__title">Yhteisö kaikille ohjelmoinnista ja ohjelmistoalasta kiinnostuneille harrastajille ja ammattilaisille.</h1></div></div></div><div class="content with-feed"><section><div class="row"><h3>Tule mukaan<!-- --> <a target="_blank" href="https://slack.com/" rel="noopener noreferrer">Slack</a>-yhteisöömme</h3><div class="form"><form class="form invite-form"><div class="form__field"><label class="label" for="email-field">Sähköpostiosoite:</label><div class="controls-wrapper"><span class="input-wrapper"><input type="text" class="input invite-form__input" name="email" id="email-field" placeholder="" value=""/><div class="invite-form__loader"><div class="sk-folding-cube"><div class="sk-cube1 sk-cube"></div><div class="sk-cube2 sk-cube"></div><div class="sk-cube4 sk-cube"></div><div class="sk-cube3 sk-cube"></div></div></div></span><button class="btn btn__submit" type="submit" title="Lähetä">Lähetä</button></div></div></form></div><p class="code-of-conduct">Ennen liittymistä yhteisöömme varmista, että olet lukenut yhteisön<!-- --> <a target="_blank" rel="noopener noreferrer" href="https://github.com/koodiklinikka/code-of-conduct/blob/master/README.md">käyttäytymissäännöt</a>.</p></div></section><section><div class="row"><div class="bread"><div class="column column1-2"><h3>Yhteisö ohjelmoinnista kiinnostuneille</h3><p>Koodiklinikka on Suomen suurin ohjelmistoalan yhteisö, joka kokoaa työntekijät, harrastajat ja vasta-alkajat yhteen.<!-- -->
+<!-- -->Tarkoituksenamme on yhdistää ja kasvattaa suomalaista ohjelmointiyhteisöä, sekä tarjota apua ja uusia kontakteja ohjelmoinnista innostuneille nuorille.</p><p>Mukaan liittyminen on ilmaista ja helppoa. Jätä sähköpostiosoitteesi ylläolevaan kenttään ja lähetämme sinulle kutsun Slack-yhteisöömme.</p></div><div class="column column1-2"><a href="/static/images/slack.png" target="_blank"><img src="/static/images/slack.png" alt="Slack app at Koodiklinikka" loading="lazy"/></a></div></div></div><div class="row"><div class="bread"><div class="column column5-5"><h3>Suosituimmat keskustelunaiheet tänään</h3><table class="channels"><tbody><tr><td><div><a href="https://app.slack.com/client/T03BQ3NU9/C040N0SQY" target="_blank" class="channel">#<!-- -->duunit</a></div><span class="channel-members">1845<!-- --> jäsentä</span></td><td><span><div class="channel-topic"><p><a href="https://app.slack.com/client/T03BQ3NU9/CJY8D3TDY">#<!-- -->politiikka</a> erikseen, KOKO=halvin kassa. <a href="https://app.slack.com/client/T03BQ3NU9/C66UM4J82">#<!-- -->rekry</a>:lle oma kanava | Isä, miksei #työnantaja suostu maksamaan riittävästi #palkka:a | Days since palkkakeskustelu: 0 | Days since etätyökeskustelu: 0</p></div></span></td></tr><tr><td><div><a href="https://app.slack.com/client/T03BQ3NU9/C010292HULV" target="_blank" class="channel">#<!-- -->corona</a></div><span class="channel-members">185<!-- --> jäsentä</span></td><td><span><div class="channel-topic"><p><img alt="korona" src="https://emoji.slack-edge.com/T03BQ3NU9/korona/38426849eb645f9a.png"/> <img alt="thl" src="https://emoji.slack-edge.com/T03BQ3NU9/thl/43eaa06e7b52d84e.png"/> <img alt="catpanicpopcorn" src="https://emoji.slack-edge.com/T03BQ3NU9/catpanicpopcorn/01790c0c4d12e59e.png"/>  <img alt="rip" src="https://emoji.slack-edge.com/T03BQ3NU9/rip/674f5f63f204f080.png"/><img alt="torille" src="https://emoji.slack-edge.com/T03BQ3NU9/torille/4446a6b6efb07516.png"/> 346 | <a href="https://thl.fi/fi/web/infektiotaudit-ja-rokotukset/ajankohtaista/ajankohtaista-koronaviruksesta-covid-19">https://thl.fi/fi/web/infektiotaudit-ja-rokotukset/ajankohtaista/ajankohtaista-koronaviruksesta-covid-19</a></p></div></span></td></tr><tr><td><div><a href="https://app.slack.com/client/T03BQ3NU9/C043HRE3X" target="_blank" class="channel">#<!-- -->pelinurkka</a></div><span class="channel-members">206<!-- --> jäsentä</span></td><td><span><div class="channel-topic"><p>Keskustelua pelaamisesta yleensä, vähemmän tosin lautapeleistä. 👾 Steam-yhteisö <a href="https://steamcommunity.com/groups/koodiklinikka">https://steamcommunity.com/groups/koodiklinikka</a></p></div></span></td></tr><tr><td><div><a href="https://app.slack.com/client/T03BQ3NU9/C03BQ3NV3" target="_blank" class="channel">#<!-- -->random</a></div><span class="channel-members">1656<!-- --> jäsentä</span></td><td><span><div class="channel-topic"><p>aivan hyvä</p></div></span></td></tr><tr><td><div><a href="https://app.slack.com/client/T03BQ3NU9/C5K197THA" target="_blank" class="channel">#<!-- -->homeautomation</a></div><span class="channel-members">259<!-- --> jäsentä</span></td><td><span><div class="channel-topic"><p><img alt="makita" src="https://emoji.slack-edge.com/T03BQ3NU9/makita/59341f90ac68f82c.png"/><img alt="pro" src="https://emoji.slack-edge.com/T03BQ3NU9/pro/1905260141965c51.png"/> KK:n kallein kanava. Wifi, Genelec, yleistä talon rakentamisesta ja remontoinnista, joskus myös automaatiosta. AC-PRO=wanha<!-- -->&amp;<!-- -->hidas, osta NanoHD/AC-HD, jälkimmäisessä parempi 2.4GHz perffi (osta eurodk:sta)</p></div></span></td></tr><tr><td><div><a href="https://app.slack.com/client/T03BQ3NU9/C6K2UL9SQ" target="_blank" class="channel">#<!-- -->sijoitukset</a></div><span class="channel-members">389<!-- --> jäsentä</span></td><td><span><div class="channel-topic"><p>STONKS ONLY GO UP!!1!</p></div></span></td></tr><tr><td><div><a href="https://app.slack.com/client/T03BQ3NU9/C03BQ3NUX" target="_blank" class="channel">#<!-- -->yleinen</a></div><span class="channel-members">2675<!-- --> jäsentä</span></td><td><span><div class="channel-topic"><p><a href="https://kaikillekone.fi/">https://kaikillekone.fi/</a> | ⭐💯 <a href="https://webbidevaus.fi/">https://webbidevaus.fi/</a> | Koodiklinikan palkkakyselyn tuloksia <a href="https://bit.ly/2xV7Odf">https://bit.ly/2xV7Odf</a> | <a href="https://shop.spreadshirt.fi/koodiklinikka/">https://shop.spreadshirt.fi/koodiklinikka/</a></p></div></span></td></tr><tr><td><div><a href="https://app.slack.com/client/T03BQ3NU9/C6QD3V95J" target="_blank" class="channel">#<!-- -->vanhemmat</a></div><span class="channel-members">98<!-- --> jäsentä</span></td><td><span><div class="channel-topic"><p>#isukit ja #äitylit samassa nipussa. PS. Äitiysloma ≠ 9kk | “sinänsä ainoa paikka missä kakkajutut on normaalia” | “Mulle on kerran vilauteltu”, myös parinmuodostus. KK:n eroottisin kanava</p></div></span></td></tr><tr><td><div><a href="https://app.slack.com/client/T03BQ3NU9/C043KN0KT" target="_blank" class="channel">#<!-- -->apple</a></div><span class="channel-members">1334<!-- --> jäsentä</span></td><td><span><div class="channel-topic"><p>ex-#ios — Keskustelua Applen ekosysteemistä</p></div></span></td></tr><tr><td><div><a href="https://app.slack.com/client/T03BQ3NU9/C8Z0WSQGH" target="_blank" class="channel">#<!-- -->autot</a></div><span class="channel-members">93<!-- --> jäsentä</span></td><td><span><div class="channel-topic"><p>keskustelua lappiin pääsemisestä, hoivakodeista sekä kaikista moottorikäyttöisistä kulkuneuvoista</p></div></span></td></tr></tbody></table><p><strong>Ja paljon muuta:</strong> <a href="https://app.slack.com/client/T03BQ3NU9/C03V381DV" target="_blank">#<!-- -->devops</a>, <a href="https://app.slack.com/client/T03BQ3NU9/CJY8D3TDY" target="_blank">#<!-- -->politiikka</a>, <a href="https://app.slack.com/client/T03BQ3NU9/C03RHNQE0" target="_blank">#<!-- -->design</a>, <a href="https://app.slack.com/client/T03BQ3NU9/C03PTV5LN" target="_blank">#<!-- -->javascript</a>, <a href="https://app.slack.com/client/T03BQ3NU9/C1BUPTTL0" target="_blank">#<!-- -->react</a>, <a href="https://app.slack.com/client/T03BQ3NU9/C66UM4J82" target="_blank">#<!-- -->rekry</a>, <a href="https://app.slack.com/client/T03BQ3NU9/C7RKH3337" target="_blank">#<!-- -->tampere</a>, <a href="https://app.slack.com/client/T03BQ3NU9/CBM9BR5EX" target="_blank">#<!-- -->nom</a>, <a href="https://app.slack.com/client/T03BQ3NU9/C0EMC04GJ" target="_blank">#<!-- -->python</a>, <a href="https://app.slack.com/client/T03BQ3NU9/C03GN732H" target="_blank">#<!-- -->kysymykset</a>, <a href="https://app.slack.com/client/T03BQ3NU9/C238FPM6C" target="_blank">#<!-- -->ostamyy</a>, <a href="https://app.slack.com/client/T03BQ3NU9/C0H3KG7RN" target="_blank">#<!-- -->vmp</a>, <a href="https://app.slack.com/client/T03BQ3NU9/CCL0V50SV" target="_blank">#<!-- -->penkkiurheilu</a>, <a href="https://app.slack.com/client/T03BQ3NU9/CARCH9KKL" target="_blank">#<!-- -->beer</a>, <a href="https://app.slack.com/client/T03BQ3NU9/C04H9V6J3" target="_blank">#<!-- -->typescript</a>, <a href="https://app.slack.com/client/T03BQ3NU9/C04K7PMT0" target="_blank">#<!-- -->php</a>, <a href="https://app.slack.com/client/T03BQ3NU9/CRZ2Z1CJE" target="_blank">#<!-- -->elukat</a>, <a href="https://app.slack.com/client/T03BQ3NU9/CHAUK0GDV" target="_blank">#<!-- -->viro</a>, <a href="https://app.slack.com/client/T03BQ3NU9/CS2RGE7JQ" target="_blank">#<!-- -->nousukarvat</a>, <a href="https://app.slack.com/client/T03BQ3NU9/C0432KDDN" target="_blank">#<!-- -->tapahtumat</a>...</p></div></div></div><div class="row"><div class="bread"><h3>Avoin lähdekoodi</h3><p>Suosimme avointa lähdekoodia ja kaikki käyttämämme koodi on vapaasti saatavilla ja hyödynnettävissä<!-- --> <a href="https://github.com/koodiklinikka">Github-organisaatiomme sivulta</a>. Organisaation jäseneksi otamme kaikki Slack-yhteisömme jäsenet. Koodiklinikan projekteihin voi osallistua kuka tahansa ja muutosideat ovat aina lämpimästi tervetulleita.</p><div id="members"><div class="members" aria-hidden="true"><a href="https://github.com/koodiklinikka" target="_blank" rel="noopener noreferrer" tabindex="-1"></a></div></div></div></div></section><div id="feed"><div class="feed"></div></div></div></div></div><footer><div class="sponsors"><div class="sponsors__label">Yhteistyössä</div><a href="https://futurice.com/" target="_blank" rel="noopener noreferrer"><img src="/static/images/sponsors/futurice.svg" alt="Futurice" class="sponsor sponsor__futurice" loading="lazy"/></a><a href="https://www.metosin.fi/" target="_blank" rel="noopener noreferrer"><img src="/static/images/sponsors/metosin.svg" alt="Metosin" class="sponsor sponsor__metosin" loading="lazy"/></a><a href="https://www.solita.fi/" target="_blank" rel="noopener noreferrer"><img src="/static/images/sponsors/solita.svg" alt="Solita" class="sponsor sponsor__solita" loading="lazy"/></a><a href="https://wakeone.co/" target="_blank" rel="noopener noreferrer"><img src="/static/images/sponsors/wakeone.svg" alt="Wakeone" class="sponsor sponsor__wakeone" loading="lazy"/></a><a href="https://www.nordea.fi/" target="_blank" rel="noopener noreferrer"><img src="/static/images/sponsors/nordea.svg" alt="Nordea" class="sponsor sponsor__nordea" loading="lazy"/></a><a href="https://www.idean.com/" target="_blank" rel="noopener noreferrer"><img src="/static/images/sponsors/idean.svg" alt="Idean" class="sponsor sponsor__idean" loading="lazy"/></a><a href="https://rare.fi/" target="_blank" rel="noopener noreferrer"><img src="/static/images/sponsors/rare.svg" alt="Rare" class="sponsor sponsor__rare" loading="lazy"/></a></div><div class="contacts"><div><a href="https://koodiklinikka.slack.com" aria-label="Koodiklinikka Slackissä"><i class="fa fa-slack" aria-hidden="true"></i></a><a href="https://github.com/koodiklinikka/koodiklinikka.fi" aria-label="Koodiklinikka Githubissa"><i class="fa fa-github" aria-hidden="true"></i></a><a href="https://twitter.com/koodiklinikka" aria-label="Koodiklinikka Twitterissä"><i class="fa fa-twitter" aria-hidden="true"></i></a><a href="https://www.linkedin.com/groups/12025476" aria-label="Koodiklinikka Linkedinissä"><i class="fa fa-linkedin" aria-hidden="true"></i></a><a href="https://www.facebook.com/koodiklinikka" aria-label="Koodiklinikka Facebookissa"><i class="fa fa-facebook" aria-hidden="true"></i></a><div id="email"><a href="mailto:info@koodiklinikka.fi">info@koodiklinikka.fi</a></div></div></div></footer></div><div class="fader" style="opacity:0"></div><script id="__NEXT_DATA__" type="application/json">{"props":{"pageProps":{"channels":[{"id":"C040N0SQY","name":"duunit","topic":"\u003c#CJY8D3TDY|politiikka\u003e erikseen, KOKO=halvin kassa. \u003c#C66UM4J82|rekry\u003e:lle oma kanava | Isä, miksei #työnantaja suostu maksamaan riittävästi #palkka:a | Days since palkkakeskustelu: 0 | Days since etätyökeskustelu: 0","num_members":1845,"purpose":{"value":"Duunikeskustelut tänne. Rekryilmot \u003c#C66UM4J82|rekry\u003e","creator":"U03MJ1CCD","last_set":1571134801},"messages_today":190,"unique_members_today":35},{"id":"C010292HULV","name":"corona","topic":"![korona](https://emoji.slack-edge.com/T03BQ3NU9/korona/38426849eb645f9a.png) ![thl](https://emoji.slack-edge.com/T03BQ3NU9/thl/43eaa06e7b52d84e.png) ![catpanicpopcorn](https://emoji.slack-edge.com/T03BQ3NU9/catpanicpopcorn/01790c0c4d12e59e.png)  ![rip](https://emoji.slack-edge.com/T03BQ3NU9/rip/674f5f63f204f080.png)![torille](https://emoji.slack-edge.com/T03BQ3NU9/torille/4446a6b6efb07516.png) 346 | \u003chttps://thl.fi/fi/web/infektiotaudit-ja-rokotukset/ajankohtaista/ajankohtaista-koronaviruksesta-covid-19\u003e","num_members":185,"purpose":{"value":"coronaa kaikille (virusta ja kaljaa)","creator":"UM8AJSSSD","last_set":1584351932},"messages_today":189,"unique_members_today":31},{"id":"C043HRE3X","name":"pelinurkka","topic":"Keskustelua pelaamisesta yleensä, vähemmän tosin lautapeleistä. 👾 Steam-yhteisö \u003chttps://steamcommunity.com/groups/koodiklinikka\u003e","num_members":206,"purpose":{"value":"","creator":"","last_set":0},"messages_today":99,"unique_members_today":26},{"id":"C03BQ3NV3","name":"random","topic":"aivan hyvä","num_members":1656,"purpose":{"value":"A place for non-work banter, links, articles of interest, humor or anything else which you'd like concentrated in some place other than work-related channels. But not cars.","creator":"U03CAUD2Z","last_set":1527762432},"messages_today":103,"unique_members_today":24},{"id":"C5K197THA","name":"homeautomation","topic":"![makita](https://emoji.slack-edge.com/T03BQ3NU9/makita/59341f90ac68f82c.png)![pro](https://emoji.slack-edge.com/T03BQ3NU9/pro/1905260141965c51.png) KK:n kallein kanava. Wifi, Genelec, yleistä talon rakentamisesta ja remontoinnista, joskus myös automaatiosta. AC-PRO=wanha\u0026amp;hidas, osta NanoHD/AC-HD, jälkimmäisessä parempi 2.4GHz perffi (osta eurodk:sta)","num_members":259,"purpose":{"value":"Taloautomaatio, KNX, Loxone, Openhab, älyvalot, Home Assistant, Hue, Trådfri, Xiaomi jne.","creator":"U30V2RP38","last_set":1550353358},"messages_today":274,"unique_members_today":24},{"id":"C6K2UL9SQ","name":"sijoitukset","topic":"STONKS ONLY GO UP!!1!","num_members":389,"purpose":{"value":"Keskustelua sijoituksista ","creator":"U03LQ3FRQ","last_set":1576323694},"messages_today":149,"unique_members_today":23},{"id":"C03BQ3NUX","name":"yleinen","topic":"\u003chttps://kaikillekone.fi/\u003e | ⭐💯 \u003chttps://webbidevaus.fi/\u003e | Koodiklinikan palkkakyselyn tuloksia \u003chttps://bit.ly/2xV7Odf\u003e | \u003chttps://shop.spreadshirt.fi/koodiklinikka/\u003e","num_members":2675,"purpose":{"value":"Yleiseen keskusteluun ohjelmistoalasta. \n\nhttps://github.com/koodiklinikka  \nKaikenlainen kontribuutio projekteihin otetaan lämpimästi vastaan.\nKutsuja GitHub-organisaatioon huutelemalla nimimerkkiä #yleinen\n\nhttp://www.reddit.com/r/javascript","creator":"U03BQ3NUD","last_set":1423841625},"messages_today":64,"unique_members_today":21},{"id":"C6QD3V95J","name":"vanhemmat","topic":"#isukit ja #äitylit samassa nipussa. PS. Äitiysloma ≠ 9kk | “sinänsä ainoa paikka missä kakkajutut on normaalia” | “Mulle on kerran vilauteltu”, myös parinmuodostus. KK:n eroottisin kanava","num_members":98,"purpose":{"value":"vanhempien kivaa","creator":"UBY20R4CX","last_set":1580718840},"messages_today":386,"unique_members_today":21},{"id":"C043KN0KT","name":"apple","topic":"ex-#ios — Keskustelua Applen ekosysteemistä","num_members":1334,"purpose":{"value":"Keskustelua iOS-kehitykseen liittyen.","creator":"U043L6J7J","last_set":1426866691},"messages_today":75,"unique_members_today":19},{"id":"C8Z0WSQGH","name":"autot","topic":"keskustelua lappiin pääsemisestä, hoivakodeista sekä kaikista moottorikäyttöisistä kulkuneuvoista","num_members":93,"purpose":{"value":"autojuttuja","creator":"U3Q5MJVV0","last_set":1517010430},"messages_today":71,"unique_members_today":19},{"id":"C03V381DV","name":"devops","topic":"kyoob-cuttle - Yo! Deploy fridays - it's never dns - it's always dns #vainpostgresjutut","num_members":1597,"purpose":{"value":"Devaavat operaattorit ja muuta hypeä","creator":"U03V347DD","last_set":1425985307},"messages_today":60,"unique_members_today":12},{"id":"CJY8D3TDY","name":"politiikka","topic":"JATTK=halvin kassa. \u003c#C66UM4J82|rekry\u003e:lle oma kanava, täällä  ~asiaa~ sokeroinnista, lasten kotitehtävistä, musiikkisoittimista \u0026amp; maahanmuutosta, intistä. Myös politiikka. Hot Takes galore!","num_members":120,"purpose":{"value":"politiikka pois duuneista","creator":"U1945AF3J","last_set":1559718553},"messages_today":21,"unique_members_today":12},{"id":"C03RHNQE0","name":"design","topic":"Kaikki desing-jutut","num_members":1530,"purpose":{"value":"Täällä puhutaan designiin liittyvistä seikoista.","creator":"U03MFMCE0","last_set":1425038458},"messages_today":40,"unique_members_today":10},{"id":"C03PTV5LN","name":"javascript","topic":"Keskustelua politiikasta, SQL:stä, PHP:sta, Scalasta, Pythonista ja joskus myös JavaScriptistä","num_members":1832,"purpose":{"value":"JavaScript-kursseja:\nhttps://www.codeschool.com/courses/javascript-road-trip-part-1\nhttp://www.codecademy.com/en/tracks/javascript\n\nMuuta:\nhttps://github.com/bolshchikov/js-must-watch\nhttps://github.com/airbnb/javascript","creator":"U03BQ3NUD","last_set":1424787549},"messages_today":27,"unique_members_today":8},{"id":"C1BUPTTL0","name":"react","topic":"","num_members":392,"purpose":{"value":"","creator":"","last_set":0},"messages_today":30,"unique_members_today":8},{"id":"C66UM4J82","name":"rekry","topic":"TÄNNE VAIN REKRYTOINTI-ILMOITUKSET, KESKUSTELU THREADISSÄ!","num_members":1547,"purpose":{"value":"Rekryilmoitukset tänne, duunikeskustelut #duunit","creator":"U043HD2F0","last_set":1499775033},"messages_today":12,"unique_members_today":7},{"id":"C7RKH3337","name":"tampere","topic":"![tampere](https://emoji.slack-edge.com/T03BQ3NU9/tampere/09cfe7c6227837c6.png) — \u003chttps://tampere.devlun.ch/\u003e","num_members":155,"purpose":{"value":"","creator":"","last_set":0},"messages_today":22,"unique_members_today":7},{"id":"CBM9BR5EX","name":"nom","topic":"Täyttä asiaa Samulin maksasta ja muista herkuista","num_members":79,"purpose":{"value":"Safkahommat.","creator":"U04LECZ9A","last_set":1531159693},"messages_today":54,"unique_members_today":7},{"id":"C0EMC04GJ","name":"python","topic":"","num_members":712,"purpose":{"value":"https://www.python.org/","creator":"U03LY4DLK","last_set":1447751755},"messages_today":14,"unique_members_today":6},{"id":"C03GN732H","name":"kysymykset","topic":"Aiheesta kuin aiheesta.","num_members":1726,"purpose":{"value":"Kysy ihan mitä tahansa ohjelmoinnin perusteista haastavampiin kysymyksiin.","creator":"U03BQ3NUD","last_set":1424267438},"messages_today":12,"unique_members_today":5},{"id":"C238FPM6C","name":"ostamyy","topic":"romut kiertoon, syvemmät keskustelut mielellaan ilmoitusten threadeissa, tai muilla kanavilla jos lipsuu paljonkin offtopicin puolelle","num_members":1412,"purpose":{"value":"","creator":"","last_set":0},"messages_today":9,"unique_members_today":5},{"id":"C0H3KG7RN","name":"vmp","topic":"\u003c#C0H3KG7RN|vmp\u003e: Vertailua Menestyjien Popoista","num_members":215,"purpose":{"value":"","creator":"","last_set":0},"messages_today":21,"unique_members_today":4},{"id":"CCL0V50SV","name":"penkkiurheilu","topic":"Keskustelua TPS:sta ja kaikesta muustakin Turkuun liittyvästä 💕","num_members":31,"purpose":{"value":"Kaikkea ruudun tuijottelusta, kun muut hikoilee.","creator":"U04MG3FPM","last_set":1536053505},"messages_today":13,"unique_members_today":4},{"id":"CARCH9KKL","name":"beer","topic":"Alcoholics, not so anonymous","num_members":108,"purpose":{"value":"Keskustelua Guinness-oluesta. Huonommatkin oluet käy paremman puutteessa.","creator":"U309W67MY","last_set":1526547132},"messages_today":6,"unique_members_today":3},{"id":"C04H9V6J3","name":"typescript","topic":"Tyypitetty JavaScript a.k.a. WarnScript","num_members":219,"purpose":{"value":"Kaikki TypeScriptistä ja sen käyttämisestä - hyppää mukaan ihmettelemään","creator":"U04H9SQBK","last_set":1429782453},"messages_today":12,"unique_members_today":2},{"id":"C04K7PMT0","name":"php","topic":"Make PHP great again","num_members":116,"purpose":{"value":"","creator":"","last_set":0},"messages_today":2,"unique_members_today":2},{"id":"CRZ2Z1CJE","name":"elukat","topic":"","num_members":48,"purpose":{"value":"Eläinvideokuvakerho","creator":"U04LECZ9A","last_set":1578385237},"messages_today":4,"unique_members_today":2},{"id":"CHAUK0GDV","name":"viro","topic":"","num_members":25,"purpose":{"value":"","creator":"","last_set":0},"messages_today":2,"unique_members_today":2},{"id":"CS2RGE7JQ","name":"nousukarvat","topic":"","num_members":11,"purpose":{"value":"Laskettelu, pulkkailu, kelkkailu, oli alla splitboard tai telemarkit, kaikki käy.","creator":"U0E588ZST","last_set":1577447239},"messages_today":6,"unique_members_today":2},{"id":"C0432KDDN","name":"tapahtumat","topic":"","num_members":1706,"purpose":{"value":"","creator":"","last_set":0},"messages_today":2,"unique_members_today":1},{"id":"CEB6YPZ62","name":"diilit","topic":"Parhaat grillit, only for you my friend","num_members":163,"purpose":{"value":"Parhaat diilit, only for you my friend","creator":"U03V3BXT7","last_set":1542868532},"messages_today":1,"unique_members_today":1},{"id":"C0434PENR","name":"elixir","topic":"\u003chttps://github.com/h4cc/awesome-elixir\u003e","num_members":82,"purpose":{"value":"Keskustelua Elixiriin (http://elixir-lang.org) liittyen.","creator":"U04378LFA","last_set":1426777593},"messages_today":4,"unique_members_today":1},{"id":"CCFT3T2TF","name":"selkääntaputtelu","topic":"Täällä jaemme onnistumisia","num_members":76,"purpose":{"value":"Täällä KK:laiset voivat onnitella toisiaan (ja itseään) kaikesta hyvästä","creator":"U041VESG6","last_set":1535367764},"messages_today":1,"unique_members_today":1},{"id":"CUBTGL9NY","name":"viihde","topic":"","num_members":53,"purpose":{"value":"Sekalaista hölinää leffoista sarjoista","creator":"UERA91E7K","last_set":1582363765},"messages_today":3,"unique_members_today":1},{"id":"C03TWHQGH","name":"android","topic":"","num_members":1308,"purpose":{"value":"http://developer.android.com/index.html","creator":"U03LVSWFF","last_set":1425634867},"messages_today":0,"unique_members_today":0},{"id":"C043WFU62","name":"java","topic":"","num_members":688,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C0411UHH3","name":"clojure","topic":"Aktiivinen yhteisö: http://clojurians.net/","num_members":629,"purpose":{"value":"(launch-missiles)","creator":"U03BQ3NUD","last_set":1426342997},"messages_today":0,"unique_members_today":0},{"id":"C03PVNPLT","name":"css","topic":"You either love it or hate it  📐","num_members":394,"purpose":{"value":"CSS \u0026amp; CSS Preprocessors","creator":"U03MFMCE0","last_set":1424709303},"messages_today":0,"unique_members_today":0},{"id":"C0438HSJL","name":"alkeet","topic":"Kysy rohkeasti","num_members":188,"purpose":{"value":"Et tiedä mistä aloittaa? Muiden kanavien jutut menevät täysin ohitse? Tule muiden aloittelijoiden kanssa kehittymään ja kysymään kysymyksiä täällä! Tyhmiä kysymyksiä ei ole.","creator":"U03BSNU4W","last_set":1426783202},"messages_today":0,"unique_members_today":0},{"id":"C043VSQ0S","name":"fp","topic":"","num_members":162,"purpose":{"value":"Keskustelua funktionaalisesta ohjelmoinnista, oli se sitten javascriptiä, clojurea, haskell:ia, f#:ia tai muuta herkkua.","creator":"U03P4LF6C","last_set":1426925696},"messages_today":0,"unique_members_today":0},{"id":"C2SKVGDDM","name":"meetup","topic":"","num_members":160,"purpose":{"value":"Suunnitellaan seuraavaa koodiklinikka meetuppia","creator":"U03BQ3NUD","last_set":1477071728},"messages_today":0,"unique_members_today":0},{"id":"CKW2HG7BR","name":"kirjasuositukset","topic":"\u003chttps://bit.ly/koodiklinikan-kirjakerho\u003e","num_members":119,"purpose":{"value":"Suosittele muille parempaa luettavaa!","creator":"U43CQJQ59","last_set":1561377749},"messages_today":0,"unique_members_today":0},{"id":"CUSSGKAKF","name":"yrittajyys","topic":"yrittämisessä onnistuminen | Ei varmaan yrittäjyys oo sit iham paras valinta | ei yrittaminen kannata | auto on paska sijoitus ja liirumlaarumlaa","num_members":118,"purpose":{"value":"Uuden ja vanhan yrittäjän ongelmat. Verot, kirjanpito ja muut elämänvastaiset byrokratiat","creator":"UFP1C2U4X","last_set":1583223295},"messages_today":0,"unique_members_today":0},{"id":"C04EBNH39","name":"turku","topic":"KISS MY ❤️ TURKU - \u003chttps://torilive.fi/\u003e","num_members":107,"purpose":{"value":"Turku skene-keskustelu. Tervetuloa.","creator":"U041T6Y91","last_set":1429186229},"messages_today":0,"unique_members_today":0},{"id":"C0435R73M","name":"dotnet","topic":"C#, VB.Net, Visual Studio ja kaikkea siltä väliltä","num_members":104,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C044RQG10","name":"ckielet","topic":"","num_members":103,"purpose":{"value":"C, Objective-C, C++ sekä muut C-johdannaiset kielet.","creator":"U03T34YKB","last_set":1427200813},"messages_today":0,"unique_members_today":0},{"id":"C04EU8W0D","name":"scala","topic":"![scala](https://emoji.slack-edge.com/T03BQ3NU9/scala/7b5cbb868f4953ec.png)","num_members":94,"purpose":{"value":"Scala ja Scala.js keskustelua","creator":"U04E5HV90","last_set":1429265758},"messages_today":0,"unique_members_today":0},{"id":"C04F7HLLF","name":"wordpress","topic":"Aktiivisempi WP-Slack: https://wordpressfi-slackin.herokuapp.com/","num_members":91,"purpose":{"value":"Join us at https://wordpressfi.slack.com","creator":"U04F7JY6P","last_set":1429360707},"messages_today":0,"unique_members_today":0},{"id":"C04FDQ3F5","name":"golang","topic":"https://tour.golang.org","num_members":91,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C16UE6S1L","name":"reactnative","topic":"","num_members":88,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C0FCTGC1H","name":"konealy","topic":"","num_members":86,"purpose":{"value":"Oppivia järjestelmiä, optimointia, neuroverkkoja ja muuta sen sellaista.","creator":"U0FCT79FT","last_set":1448612372},"messages_today":0,"unique_members_today":0},{"id":"C28CDDH1U","name":"dyel","topic":"fitness || Fillariklinikka: \u003chttps://www.strava.com/clubs/koodiklinikka\u003e || istukkahormoonilla saa \"piiskattua\" kiveksiä tuottamaan siittiöitä","num_members":83,"purpose":{"value":"Do you even lift? Kuntosali ym.","creator":"U03LTJ60E","last_set":1555565841},"messages_today":0,"unique_members_today":0},{"id":"C0GHJ9G8N","name":"rust","topic":"\u003chttps://blog.rust-lang.org/2020/08/27/Rust-1.46.0.html\u003e 🎉","num_members":78,"purpose":{"value":"Höpötystä rust kielestä \u003chttps://www.rust-lang.org/\u003e","creator":"U04GAMK8C","last_set":1594920111},"messages_today":0,"unique_members_today":0},{"id":"C6P893LFK","name":"koodiklinikka","topic":"\u003chttps://github.com/koodiklinikka/code-of-conduct/blob/master/README.md\u003e","num_members":75,"purpose":{"value":"Yleinen meta-kanava Koodiklinikan kehitykseen, yhdistykseen \u0026amp; meetuppeihin liittyen.","creator":"U03BQ3NUD","last_set":1509396939},"messages_today":0,"unique_members_today":0},{"id":"C44J58BNH","name":"serverless","topic":"","num_members":74,"purpose":{"value":"Serverless/Faas, esim. AWS Lambda, GCF, OpenWhisk yms.","creator":"U03BSNU4W","last_set":1486967788},"messages_today":0,"unique_members_today":0},{"id":"C86UZ2Z6E","name":"kryptovaluutat","topic":"Keskustelua kryptovaluutoista. \u003c#C44FT9MV1|blockchain\u003e:sta toisaalla.","num_members":74,"purpose":{"value":"Keskustelua kryptovaluutoista","creator":"U03MFMCE0","last_set":1511944333},"messages_today":0,"unique_members_today":0},{"id":"CESA9KX1P","name":"gofore-alumni","topic":"","num_members":74,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C7THB05RV","name":"api","topic":"","num_members":71,"purpose":{"value":"All about APIs","creator":"U0FA5HH1D","last_set":1509438739},"messages_today":0,"unique_members_today":0},{"id":"C0VPSMR2A","name":"git","topic":"","num_members":70,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C03PTRT64","name":"ruby","topic":"","num_members":66,"purpose":{"value":"Ruby ja sen Raiteet","creator":"U03MJ1CCD","last_set":1512350302},"messages_today":0,"unique_members_today":0},{"id":"C4GC4A543","name":"musiikki","topic":"","num_members":59,"purpose":{"value":"Suositut ja ei niin suositut koodausmusat","creator":"U043HD2F0","last_set":1489130608},"messages_today":0,"unique_members_today":0},{"id":"CA1HG66SC","name":"datascience","topic":"","num_members":58,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"CH3CM1GSJ","name":"nappaimistot","topic":"⌨ | Kytkytinlista. \u003chttps://docs.google.com/spreadsheets/d/17ei5jE9Ob2sIytTrITlMWUGbhiUFMKvZ9XzMyXoaGBI/edit?usp=sharing\u003e","num_members":58,"purpose":{"value":":keyboard:","creator":"U04LECZ9A","last_set":1552906335},"messages_today":0,"unique_members_today":0},{"id":"C0H3VUBSB","name":"unity3d","topic":"","num_members":51,"purpose":{"value":"Unity3D-pelimoottoriin liittyvää keskustelua","creator":"U0H1W3UUE","last_set":1450702417},"messages_today":0,"unique_members_today":0},{"id":"C5CECJ5FV","name":"tamperejs","topic":"","num_members":49,"purpose":{"value":"For anyone that's been to or is interested in attending a TampereJS meetup","creator":"U4AJYH6KZ","last_set":1494572307},"messages_today":0,"unique_members_today":0},{"id":"C8USS8TPX","name":"azure","topic":"","num_members":48,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C44FT9MV1","name":"blockchain","topic":"","num_members":47,"purpose":{"value":"Blockchain-teknologiaa","creator":"U0FCT79FT","last_set":1486983459},"messages_today":0,"unique_members_today":0},{"id":"C041R7LJK","name":"prosessit","topic":"","num_members":45,"purpose":{"value":"Täällä ihaillaan vesiputouksia","creator":"U03BR7P6H","last_set":1426497423},"messages_today":0,"unique_members_today":0},{"id":"CB952E1AS","name":"graphql","topic":"","num_members":45,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C043K1M3K","name":"sulautetut","topic":"","num_members":42,"purpose":{"value":"Keskustelua sulautetuista järjestelmistä","creator":"U03T34YKB","last_set":1426863682},"messages_today":0,"unique_members_today":0},{"id":"CGYLPQXPA","name":"ohjelmointi","topic":"Yleinen ohjelmointikeskustelu.","num_members":42,"purpose":{"value":"Yleistä keskustelua ohjelmoinnista.","creator":"UFK37DAKU","last_set":1552747562},"messages_today":0,"unique_members_today":0},{"id":"CQG5SG7QR","name":"lautapelit","topic":"","num_members":41,"purpose":{"value":"asiaa lautapeleistä ja ehkä sessioiden järkkämisistä","creator":"UGNGTPRNC","last_set":1574157312},"messages_today":0,"unique_members_today":0},{"id":"C0BBRJDQC","name":"helsinki","topic":"\u003chttps://helsinkidevlunch.org/\u003e","num_members":40,"purpose":{"value":"PK-seudun scene keskustelu.","creator":"U044Q0UE6","last_set":1443235360},"messages_today":0,"unique_members_today":0},{"id":"C7JS673U1","name":"iot","topic":"","num_members":40,"purpose":{"value":"Talk about raspberry pi, arduino and other embedded systems and what you can do with them.","creator":"U5N5US9HN","last_set":1508233286},"messages_today":0,"unique_members_today":0},{"id":"C01A3T729DJ","name":"gamedev","topic":"","num_members":37,"purpose":{"value":"Pelinkehitysjuttuhommat","creator":"U04LECZ9A","last_set":1599025757},"messages_today":0,"unique_members_today":0},{"id":"C30B9V34L","name":"vim","topic":"Se suljetaan kirjoittamalla `:q!` ja painamalla enter.","num_members":36,"purpose":{"value":":q\r\n\r\n\u0026lt;S-Z\u0026gt; + \u0026lt;S-Z\u0026gt;","creator":"U292VJNCA","last_set":1498828263},"messages_today":0,"unique_members_today":0},{"id":"C26ENT0FM","name":"redom","topic":"Talk about RE:DOM (https://redom.js.org)","num_members":35,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"CAESMQ231","name":"vms","topic":"jääkiekko johtaa kickbanniin","num_members":35,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C170YMR8E","name":"elm","topic":"0.18: http://elm-lang.org/blog/the-perfect-bug-report","num_members":34,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C87GB4XSL","name":"adventofcode","topic":"Koodiklinikan private leaderboard: `40924-e8f54326` (\u003chttps://adventofcode.com/2019/leaderboard/private\u003e)","num_members":32,"purpose":{"value":":christmas_tree: \u003chttp://adventofcode.com/\u003e :christmas_tree:","creator":"U03LY4DLK","last_set":1512113046},"messages_today":0,"unique_members_today":0},{"id":"C0U6P82PJ","name":"nosql","topic":"","num_members":31,"purpose":{"value":"NoSQL-tietokannat","creator":"U0436LCNM","last_set":1458564229},"messages_today":0,"unique_members_today":0},{"id":"C04SGL329","name":"laravel","topic":"","num_members":30,"purpose":{"value":"http://laravel.com/","creator":"U04L1121J","last_set":1431600527},"messages_today":0,"unique_members_today":0},{"id":"CCCCV1W3B","name":"sote","topic":"","num_members":30,"purpose":{"value":"Sote-sotilaiden taistelutarinoita","creator":"U03P4LF6C","last_set":1534925969},"messages_today":0,"unique_members_today":0},{"id":"CDE95RT9C","name":"kotlin","topic":"","num_members":28,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C6QFHD3TN","name":"testaus","topic":"","num_members":27,"purpose":{"value":"Ohjelmistotestaus","creator":"U0FA5HH1D","last_set":1503053223},"messages_today":0,"unique_members_today":0},{"id":"C061V0AKH","name":"clojurescript","topic":"","num_members":26,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C3YJTAMKK","name":"cms","topic":"","num_members":26,"purpose":{"value":"Puhutaan sisällönhallinta järjestelmistä","creator":"U04TDPMQ4","last_set":1485939427},"messages_today":0,"unique_members_today":0},{"id":"CMV0072QL","name":"haskell","topic":"Do you even monad?","num_members":26,"purpose":{"value":"Keskustelua javascriptistä :troll:","creator":"UK1HFQHC0","last_set":1567145930},"messages_today":0,"unique_members_today":0},{"id":"C0FGQP0MU","name":"drupal","topic":"","num_members":24,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"CQZTHQ614","name":"vuejs","topic":"","num_members":24,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"CES5ZTN3T","name":"flutter","topic":"1.22: \u003chttps://medium.com/flutter/announcing-flutter-1-22-44f146009e5f\u003e","num_members":23,"purpose":{"value":"Flutter","creator":"U2LN3C4FR","last_set":1544685166},"messages_today":0,"unique_members_today":0},{"id":"C03C1KWM8","name":"foobar","topic":"","num_members":21,"purpose":{"value":"kaikenlaiseen testailuun","creator":"U03BQ3NUD","last_set":1421239380},"messages_today":0,"unique_members_today":0},{"id":"C4MJ02M26","name":"oulu","topic":"","num_members":21,"purpose":{"value":"oulu. anyone?","creator":"U043CFAQ6","last_set":1490121850},"messages_today":0,"unique_members_today":0},{"id":"C738E6CES","name":"jkl","topic":"","num_members":19,"purpose":{"value":"Jyväskylä scene anyone?","creator":"U73E7Q0DV","last_set":1505300562},"messages_today":0,"unique_members_today":0},{"id":"CE1KWJC86","name":"english","topic":"","num_members":19,"purpose":{"value":"Discussion in English for the non-Finnish speaking members.","creator":"U3Q5MJVV0","last_set":1542107282},"messages_today":0,"unique_members_today":0},{"id":"C0194SFLQJY","name":"avaruus","topic":"","num_members":19,"purpose":{"value":"Tähtien tuijottelua","creator":"UBY20R4CX","last_set":1597660006},"messages_today":0,"unique_members_today":0},{"id":"CRMEJ8Q73","name":"mimmitkoodaa","topic":"","num_members":18,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C011LK5A1FH","name":"mummotunneli","topic":"![mummotunneli](https://emoji.slack-edge.com/T03BQ3NU9/mummotunneli/8466125323ddc3e7.png) 🚇","num_members":18,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C04HB9NT5","name":"polymer","topic":"","num_members":15,"purpose":{"value":"https://www.polymer-project.org - Asiaa Polymeristä ja WebComponenteista yleisesti","creator":"U04H9SQBK","last_set":1429789483},"messages_today":0,"unique_members_today":0},{"id":"C1AEFEMTR","name":"vaasa","topic":"Vaasan torilla tavataan","num_members":15,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"CL50WA669","name":"espoo","topic":"\u003chttps://www.kokoomus.fi/\u003e","num_members":15,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"CDCRRT1H9","name":"mavericks","topic":"","num_members":13,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"CK1CNTUFM","name":"warstories","topic":"","num_members":13,"purpose":{"value":"Sharing war stories from ancient times.","creator":"U3Q5MJVV0","last_set":1559929579},"messages_today":0,"unique_members_today":0},{"id":"CK4MMA1DF","name":"pori","topic":"","num_members":13,"purpose":{"value":"Porin kulmilla","creator":"U6J4W7W56","last_set":1559814907},"messages_today":0,"unique_members_today":0},{"id":"C4JH0787M","name":"pikitalist","topic":"mikään ei poista tyä stresi hualia niin kuin periantai olut","num_members":11,"purpose":{"value":"duunareiden lounge","creator":"U03CAUD2Z","last_set":1489578087},"messages_today":0,"unique_members_today":0},{"id":"CCJ9EFV7Z","name":"nodeschool","topic":"","num_members":11,"purpose":{"value":"NodeSchool Hki Chapter","creator":"U0434U3E8","last_set":1535533311},"messages_today":0,"unique_members_today":0},{"id":"CKQB9VA7M","name":"perkele","topic":"Kaikki kiva on kielletty.","num_members":9,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"CJ30ZG7EJ","name":"reasonml","topic":"","num_members":8,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"CT6NJ9KC2","name":"expats","topic":"","num_members":8,"purpose":{"value":"People living away from their homecountry.","creator":"U3Q5MJVV0","last_set":1580895298},"messages_today":0,"unique_members_today":0},{"id":"CTMEC0ZNE","name":"infosec","topic":"","num_members":7,"purpose":{"value":"Kyber kyber kyber","creator":"UCXJDMSVA","last_set":1581665521},"messages_today":0,"unique_members_today":0},{"id":"C0107BRTW5A","name":"sinkut","topic":"","num_members":7,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"CE5D722B1","name":"nurkka","topic":"Häpeä.","num_members":6,"purpose":{"value":"Häpeä.","creator":"U04LECZ9A","last_set":1542278142},"messages_today":0,"unique_members_today":0},{"id":"C017YHW1X0C","name":"tube","topic":"","num_members":6,"purpose":{"value":"Tubetus, videoeditointi, streamaus, yms","creator":"U0D00UHA5","last_set":1595848682},"messages_today":0,"unique_members_today":0},{"id":"CV4N6DY92","name":"svelte","topic":"Svelte Summit 18.10 2020 \u003chttps://sveltesummit.com\u003e","num_members":5,"purpose":{"value":"Svelte - Kyberneettisesti paranneltuja webisovelluksia","creator":"U6JD3RJBA","last_set":1583845249},"messages_today":0,"unique_members_today":0},{"id":"CHUBJF7CL","name":"vaalit","topic":"eduskuntavaalit2019","num_members":4,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"CJ7772127","name":"perl","topic":"perl -e 'print \"Hello World!\\n\"'","num_members":4,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"CSFFCA1R6","name":"qt","topic":"","num_members":4,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"CTYKUP517","name":"suuroulu","topic":"","num_members":4,"purpose":{"value":"\u003chttps://images.uncyc.org/commons/a/ac/Suur-Oulu.jpg\u003e","creator":"UCXJDMSVA","last_set":1582188577},"messages_today":0,"unique_members_today":0},{"id":"CEPBEK67Q","name":"plorth","topic":"\u003chttps://plorth.org\u003e","num_members":3,"purpose":{"value":"Discussion about Plorth programming language.","creator":"U309W67MY","last_set":1544169804},"messages_today":0,"unique_members_today":0},{"id":"C011T4RENN7","name":"hapro","topic":"Harrasteprojektit","num_members":3,"purpose":{"value":"Harrasteprojektit","creator":"U04LECZ9A","last_set":1586862396},"messages_today":0,"unique_members_today":0},{"id":"C018L1C2QMT","name":"nokia","topic":"","num_members":3,"purpose":{"value":"Kumisaappaita, wanhoja puhelimia ja likaista vettä.","creator":"UDWN3CXGU","last_set":1597133953},"messages_today":0,"unique_members_today":0},{"id":"CR2Q3GLAD","name":"accessibility-workshop-tre","topic":"","num_members":2,"purpose":{"value":"","creator":"U09T1BPB2","last_set":1575527740},"messages_today":0,"unique_members_today":0},{"id":"CRZLEG5FB","name":"devnull","topic":"","num_members":2,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C014FSDNG23","name":"fise_developer_board","topic":"","num_members":2,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C01AAPUKGLE","name":"ketteryys","topic":"","num_members":2,"purpose":{"value":"\u003chttps://agilemanifesto.org/\u003e","creator":"U04L1121J","last_set":1599828943},"messages_today":0,"unique_members_today":0},{"id":"CS3UUNA03","name":"foobar2","topic":"","num_members":1,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"CUWMK7XMG","name":"matrix","topic":"\u003chttp://matrix.org|matrix.org\u003e federated json graph database (with slack alternative \u003chttp://riot.im|riot.im\u003e )","num_members":1,"purpose":{"value":"\u003chttp://matrix.org|matrix.org\u003e federoitu graafitietokanta, mutta myös slack-korvike","creator":"UP244LXB3","last_set":1584001965},"messages_today":0,"unique_members_today":0},{"id":"C019VJU7CTC","name":"snek","topic":"","num_members":1,"purpose":{"value":"Snek == Python + TypeScript, kinda","creator":"U309W67MY","last_set":1598961010},"messages_today":0,"unique_members_today":0},{"id":"C03BR8K4M","name":"webdev","topic":"verkkokehitys","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C03HB50A3","name":"lan2015","topic":"","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C03JY2LML","name":"amd","topic":"","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C042APU46","name":"nitro_fi","topic":"","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C04F85G6F","name":"_skype","topic":"","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C04F85G6K","name":"_bitlbee","topic":"","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C04TV4GCG","name":"kumea","topic":"","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C04UGSJ73","name":"epoque","topic":"","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C061UV7CH","name":"off-topic","topic":"","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C061V0AH5","name":"editors","topic":"","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C061V0AHM","name":"boot","topic":"","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C061V0AJ3","name":"euroclojure","topic":"","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C061V0AK1","name":"events","topic":"","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C061V0ALX","name":"slack-help","topic":"","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C068UGKBM","name":"koodikerho","topic":"","num_members":0,"purpose":{"value":"Kanava on avoin kaikille aiheesta kiinnostuneille","creator":"U04H9SQBK","last_set":1439540010},"messages_today":0,"unique_members_today":0},{"id":"C06ELT1EC","name":"9-11-loka-hackathon","topic":"","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C0CG5URDJ","name":"angular","topic":"Angular Finland has now it's own Slack. Check \u0026amp; sign up at: https://www.angular.fi/","num_members":0,"purpose":{"value":"AngularJS ja Angular Framework (Angular 2, 4, 5+) keskustelua.","creator":"U0D00UHA5","last_set":1492019109},"messages_today":0,"unique_members_today":0},{"id":"C0D8GAVFU","name":"angular_2","topic":"It's all #angular now","num_members":0,"purpose":{"value":"Discussions about Angular 2","creator":"U0CH20MUZ","last_set":1445921500},"messages_today":0,"unique_members_today":0},{"id":"C0EALEP4P","name":"javascript2015","topic":"","num_members":0,"purpose":{"value":"To share knowledge about the language features, APIs, libraries, tools, and concepts underlying modern Javascript applications as well as libraries and frameworks such as Angular2, React, Redux, Relay, GraphQL, and Falcor.  Finnish or English is OK.","creator":"U0CH20MUZ","last_set":1447263580},"messages_today":0,"unique_members_today":0},{"id":"C0FGB5DU5","name":"ff0000","topic":"","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C0LUWU9MJ","name":"docker","topic":"","num_members":0,"purpose":{"value":"English language channel for the Docker community in Finland, currently mainly in Tampere.","creator":"U0FCT79FT","last_set":1455204211},"messages_today":0,"unique_members_today":0},{"id":"C0MGV7E0Z","name":"bigdata","topic":"","num_members":0,"purpose":{"value":"Hadoop, Mesos, Spark, Presto, Impala","creator":"U0MGRT5A9","last_set":1455623328},"messages_today":0,"unique_members_today":0},{"id":"C19G71Q7Q","name":"kontena","topic":"","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C2G2Z4D4L","name":"digitalist","topic":"Etsimme uutta internetistä, vaikka ainoa tehtävä olisi mullistaa vanha.","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C2GGN0YBF","name":"v","topic":"![tolle](https://emoji.slack-edge.com/T03BQ3NU9/tolle/bf60679b4d2b86d7.png)","num_members":0,"purpose":{"value":"V","creator":"U03CAUD2Z","last_set":1474988612},"messages_today":0,"unique_members_today":0},{"id":"C2V4J1QNP","name":"deveo","topic":"","num_members":0,"purpose":{"value":"Deveo.com on tarjoaa ilmaisia yksityisiä repositoryja (git, svn, mercurial)","creator":"U29BNCVL3","last_set":1477593633},"messages_today":0,"unique_members_today":0},{"id":"C36PJ57FW","name":"forth","topic":"s\" TERVETULOA\" DUP NIP DROP","num_members":0,"purpose":{"value":"dup pop swap","creator":"U309W67MY","last_set":1479985173},"messages_today":0,"unique_members_today":0},{"id":"C48RVRSGM","name":"tabsvsspaces","topic":"Keskustelua aiheesta miksi tabisisennys on ylivoimainen vaihtoehto","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C595EC5MY","name":"hummfafafa","topic":"","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C62TACR5W","name":"react-finland-2018","topic":"\u003chttps://react-finland.fi/\u003e","num_members":0,"purpose":{"value":"React / React Native -tapahtuman suunnittelua keväälle 2018","creator":"U041VESG6","last_set":1499165157},"messages_today":0,"unique_members_today":0},{"id":"C6E62MXRU","name":"k","topic":"","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C6L8SFWGL","name":"emacs","topic":"","num_members":0,"purpose":{"value":"Editing macros.","creator":"U04T9H8LG","last_set":1502281612},"messages_today":0,"unique_members_today":0},{"id":"C6MC5L55G","name":"jodel","topic":"","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C6UMCGGBB","name":"kelloporno","topic":"","num_members":0,"purpose":{"value":"Sitä... itseään.","creator":"U30V2RP38","last_set":1504017128},"messages_today":0,"unique_members_today":0},{"id":"C6VKPT5JN","name":"123","topic":"","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C6VNFV6KC","name":"xr-ar-vr-ai","topic":"","num_members":0,"purpose":{"value":"Vaihtoehtotodellisuutta halajaville","creator":"U041VESG6","last_set":1507362158},"messages_today":0,"unique_members_today":0},{"id":"C6VPPPP9T","name":"1234","topic":"","num_members":0,"purpose":{"value":"","creator":"","last_set":0},"messages_today":0,"unique_members_today":0},{"id":"C9VUE8H1N","name":"verkko","topic":"","num_members":0,"purpose":{"value":"Keskustelua tietoliikenteestä, laitteista, intterwebseistä ja biteistä","creator":"U30V2RP38","last_set":1522141194},"messages_today":0,"unique_members_today":0},{"id":"CAL11SNE7","name":"gambling","topic":"Jos ei pelaa, ei voi voittaa… 🎰","num_members":0,"purpose":{"value":"Superkoodarin palkka on tehty pelattavaksi","creator":"U041VESG6","last_set":1525782474},"messages_today":0,"unique_members_today":0},{"id":"CBZKFREDA","name":"vmp2","topic":"Kahdennettu \u003c#C0H3KG7RN|vmp\u003e","num_members":0,"purpose":{"value":"Kahdennettu \u003c#C0H3KG7RN|vmp\u003e","creator":"U2LN3C4FR","last_set":1533025991},"messages_today":0,"unique_members_today":0},{"id":"CD0PXUJD6","name":"riistäjä","topic":"","num_members":0,"purpose":{"value":"Yrittäjien ja yrittämisestä kiinnostuneiden oma pöhinäkanava","creator":"U03P4LF6C","last_set":1537974108},"messages_today":0,"unique_members_today":0},{"id":"CRRRG150B","name":"pyöräily","topic":"\u003chttp://jalki.fi|jalki.fi\u003e | \u003chttp://kilometrikisa.fi|kilometrikisa.fi\u003e | \u003chttp://fillarifoorumi.fi|fillarifoorumi.fi\u003e | \u003chttp://fillaritori.com|fillaritori.com\u003e","num_members":0,"purpose":{"value":"Keskustelua pyöräilystä","creator":"UBGMEF35F","last_set":1577448294},"messages_today":0,"unique_members_today":0},{"id":"C015AL5T4F5","name":"metainttaminen","topic":"","num_members":0,"purpose":{"value":"Ei tää tänne kuulu","creator":"UDZT8SFHT","last_set":1591952769},"messages_today":0,"unique_members_today":0}]},"__N_SSG":true},"page":"/","query":{},"buildId":"xVvWeninIXWcjBoTwsxrT","nextExport":false,"isFallback":false,"gsp":true}</script><script nomodule="" src="/_next/static/chunks/polyfills-57d8738e7416f8423303.js"></script><script src="/_next/static/chunks/main-522b3f942203a9317190.js" async=""></script><script src="/_next/static/chunks/webpack-d7b2fb72fb7257504a38.js" async=""></script><script src="/_next/static/chunks/framework.1d36bc031662b4dc4c28.js" async=""></script><script src="/_next/static/chunks/commons.ad1dd656b127b586e70d.js" async=""></script><script src="/_next/static/chunks/f6078781a05fe1bcb0902d23dbbb2662c8d200b3.f5d66da7406296e78e59.js" async=""></script><script src="/_next/static/chunks/pages/_app-ce4797976568efc3d7c4.js" async=""></script><script src="/_next/static/chunks/styles.b46a4adba07379a86283.js" async=""></script><script src="/_next/static/chunks/pages/index-93b4ab2183cbbc15b737.js" async=""></script><script src="/_next/static/xVvWeninIXWcjBoTwsxrT/_buildManifest.js" async=""></script><script src="/_next/static/xVvWeninIXWcjBoTwsxrT/_ssgManifest.js" async=""></script></body></html>
